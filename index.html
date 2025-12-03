@@ -19,15 +19,26 @@
     </header>
 
     <main>
-        <div class="controls">
-            <button class="add-idea-btn" onclick="openModal()">
-                <span class="btn-icon">+</span>
-                <span>Add Idea</span>
-            </button>
-        </div>
+        <div class="idea-wall">
+            
+            <!--
+            ==========================================
+            TO ADD A NEW IDEA: Copy this template
+            ==========================================
+            
+            <div class="idea-card" style="--rotation: 0deg; --hue: 60;">
+                <div class="pin"></div>
+                <h3>Your Idea Title</h3>
+                <p>Your idea description goes here.</p>
+                <span class="idea-date">Dec 3, 2025</span>
+            </div>
+            
+            TIPS:
+            - rotation: try values between -4deg and 4deg
+            - hue: 0-360 (0=red, 60=yellow, 120=green, 180=cyan, 240=blue, 300=pink)
+            ==========================================
+            -->
 
-        <div class="idea-wall" id="ideaWall">
-            <!-- Sample ideas -->
             <div class="idea-card" style="--rotation: -2deg; --hue: 45;">
                 <div class="pin"></div>
                 <h3>Learn a new language</h3>
@@ -69,92 +80,12 @@
                 <p>No screens for half the day. Journal, paint, or just sit in nature.</p>
                 <span class="idea-date">Nov 28, 2025</span>
             </div>
+
         </div>
     </main>
-
-    <!-- Modal for adding new ideas -->
-    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
-        <div class="modal" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeModal()">×</button>
-            <h2>✨ New Idea</h2>
-            <form id="ideaForm" onsubmit="addIdea(event)">
-                <div class="form-group">
-                    <label for="ideaTitle">Title</label>
-                    <input type="text" id="ideaTitle" placeholder="What's your idea?" required>
-                </div>
-                <div class="form-group">
-                    <label for="ideaDescription">Description</label>
-                    <textarea id="ideaDescription" placeholder="Tell us more about it..." rows="4" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Pin to Wall</button>
-            </form>
-        </div>
-    </div>
 
     <footer>
         <p>Made with ☕ and creativity</p>
     </footer>
-
-    <script>
-        function openModal() {
-            document.getElementById('modalOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function addIdea(e) {
-            e.preventDefault();
-            
-            const title = document.getElementById('ideaTitle').value;
-            const description = document.getElementById('ideaDescription').value;
-            const wall = document.getElementById('ideaWall');
-            
-            // Random rotation and hue for variety
-            const rotation = (Math.random() - 0.5) * 6;
-            const hue = Math.floor(Math.random() * 360);
-            
-            // Get today's date
-            const today = new Date().toLocaleDateString('en-US', { 
-                month: 'short', 
-                day: 'numeric', 
-                year: 'numeric' 
-            });
-            
-            const card = document.createElement('div');
-            card.className = 'idea-card new-card';
-            card.style.setProperty('--rotation', rotation + 'deg');
-            card.style.setProperty('--hue', hue);
-            
-            card.innerHTML = `
-                <div class="pin"></div>
-                <h3>${escapeHtml(title)}</h3>
-                <p>${escapeHtml(description)}</p>
-                <span class="idea-date">${today}</span>
-            `;
-            
-            // Add to the beginning of the wall
-            wall.insertBefore(card, wall.firstChild);
-            
-            // Reset form and close modal
-            document.getElementById('ideaForm').reset();
-            closeModal();
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-    </script>
 </body>
 </html>
-

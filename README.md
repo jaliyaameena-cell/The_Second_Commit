@@ -1,13 +1,10 @@
 # 💡 IdeaWall
 
-A simple, beautiful idea board to capture and organize your thoughts. Built with pure HTML, CSS, and JavaScript — no dependencies required.
-
-![IdeaWall Preview](https://img.shields.io/badge/Status-Ready-brightgreen)
+A simple, beautiful idea board to capture and organize your thoughts. Built with pure HTML and CSS — no JavaScript required.
 
 ## Features
 
 - 🎨 **Cork board aesthetic** with colorful sticky notes
-- ✏️ **Add new ideas** with title and description
 - 🎯 **Smooth animations** for an engaging experience
 - 📱 **Fully responsive** — works on all devices
 - ⚡ **Zero dependencies** — just open and use
@@ -16,7 +13,6 @@ A simple, beautiful idea board to capture and organize your thoughts. Built with
 
 1. Clone or download this repository
 2. Open `index.html` in your browser
-3. Start pinning your ideas!
 
 ```
 ideawall/
@@ -25,12 +21,29 @@ ideawall/
 └── README.md     # You're here
 ```
 
-## Usage
+## Adding Ideas
 
-- Click the **"+ Add Idea"** button to create a new note
-- Fill in a title and description
-- Your idea appears on the wall with a random color and rotation
-- Hover over notes to highlight them
+To add a new idea, open `index.html` and copy this template inside the `<div class="idea-wall">`:
+
+```html
+<div class="idea-card" style="--rotation: 0deg; --hue: 60;">
+    <div class="pin"></div>
+    <h3>Your Idea Title</h3>
+    <p>Your idea description goes here.</p>
+    <span class="idea-date">Dec 3, 2025</span>
+</div>
+```
+
+### Customization Tips
+
+- **rotation**: Try values between `-4deg` and `4deg` for a natural look
+- **hue**: Use 0-360 for different colors:
+  - `0` = Red
+  - `60` = Yellow
+  - `120` = Green
+  - `180` = Cyan
+  - `240` = Blue
+  - `300` = Pink
 
 ## Browser Support
 
@@ -39,4 +52,3 @@ Works in all modern browsers (Chrome, Firefox, Safari, Edge).
 ## License
 
 MIT — feel free to use and modify for your own projects.
-
